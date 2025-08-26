@@ -1,0 +1,28 @@
+name: Refresh Students
+
+on:
+  schedule:
+    # Saturday, Monday, Tuesday at 20:30 UTC (= 2:00 AM IST next day)
+    - cron: "30 20 * * 0,1,5"
+  workflow_dispatch:
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run updater
+        run: npm run refresh
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
