@@ -5,7 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "refresh": "node services/updater.js"
+    "refresh": "node scripts/refresh.js"
   },
   "keywords": [],
   "author": "",
